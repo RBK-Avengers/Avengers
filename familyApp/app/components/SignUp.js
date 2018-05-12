@@ -8,10 +8,11 @@ import {
  TouchableOpacity,
  AsyncStorage,
 } from 'react-native';
-import { StackNavigator } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation';
+import Login from './Login';
+//import {Picker,Item} from 'react-native';
 
-
-export default class Login extends React.Component {
+export default class Signup extends React.Component {
 	constructor(props){
 		super(props);
 		this.state={
@@ -19,6 +20,8 @@ export default class Login extends React.Component {
 			email:'',
 			password:'',
 			DateOfBirth:'',
+			role:'',
+			familyid:'',
 		}
 	}
 	componentDidMount(){
@@ -34,36 +37,55 @@ export default class Login extends React.Component {
     return (
     <KeyboardAvoidingView behaviour='padding' style ={styles.wrapper}>
     <View style={styles.container}>
-    <Text style={styles.header}> LOGIN </Text>
+    <Text style={styles.header}> SIGNUP</Text>
     <TextInput
     	style={styles.textInput} 
     	placeholder='Username'
     	onChangeText={(username) => this.setState({username})}
-    		
-
-
     /> 
      <TextInput
     	style={styles.textInput} 
+    	placeholder='Email'
+    	onChangeText={(email) => this.setState({email})}
+    /> 
+    <TextInput
+    	style={styles.textInput} 
     	placeholder='Password'
     	onChangeText={(password) => this.setState({password})}
-    	
-
-
     /> 
+     <TextInput
+    	style={styles.textInput} 
+    	placeholder='DateOfBirth'
+    	onChangeText={(DateOfBirth) => this.setState({DateOfBirth})}
+    /> 
+    <TextInput
+    	style={styles.textInput} 
+    	placeholder='Role'
+    	onChangeText={(role) => this.setState({role})}
+    /> 
+    <TextInput
+    	style={styles.textInput} 
+    	placeholder='FamilyID'
+    	onChangeText={(familyid) => this.setState({familyid})}
+    /> 
+   
+
+  
     <TouchableOpacity
     	style={styles.btn}
-    	onPress={this.login}
+
+    	onPress={()=>
+    		this.props.navigation.navigate('Login')
+    	}
     	>
-    	<Text>Log in</Text>
+
+    	<Text>Sign up</Text>
     	</TouchableOpacity>
     </View>
     </KeyboardAvoidingView>
     );
   }
-  login=()=>{
-  	alert('test')
-  }
+  
 }
 
 const styles = StyleSheet.create({

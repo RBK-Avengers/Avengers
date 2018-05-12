@@ -8,8 +8,8 @@ import {
  TouchableOpacity,
  AsyncStorage,
 } from 'react-native';
-import { StackNavigator } from 'react-navigation';
-
+import { createStackNavigator } from 'react-navigation';
+import Profile from './Profile';
 
 export default class Login extends React.Component {
 	constructor(props){
@@ -51,7 +51,9 @@ export default class Login extends React.Component {
     /> 
     <TouchableOpacity
     	style={styles.btn}
-    	onPress={this.login}
+    	onPress={() =>
+    		this.props.navigation.navigate('Profile')
+    	}
     	>
     	<Text>Log in</Text>
     	</TouchableOpacity>
@@ -59,10 +61,32 @@ export default class Login extends React.Component {
     </KeyboardAvoidingView>
     );
   }
-  login=()=>{
-  	alert('test')
-  }
-}
+//   login=()=>{
+//   	alert('test')
+//   	//   	fetch('http://192.5454.25.2:3000/users'),{
+// //   		method:'POST',
+// //   		'Content-Type':'application/json',
+// //   	},
+// //   	body:JSON.stringify({
+// //   		email:this.state.email,
+// //   		password:this.state.password,
+// //   	})
+// //   })
+// // .then((response) => response.json())
+// // .then((res => {
+
+// // 	if(res.success===true){
+// // 	AsyncStorage.setItem('user',res.user);
+// // 	this.props.navigation.navigate('Profile');
+// // }
+// // else{
+// // 	alet(res.message);
+// //      }
+// //    })
+// // 	.done()
+// //   }
+//   }
+ }
 
 const styles = StyleSheet.create({
 wrapper: {
