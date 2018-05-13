@@ -8,10 +8,11 @@ import {
  TouchableOpacity,
  AsyncStorage,
 } from 'react-native';
-import { StackNavigator } from 'react-navigation';
+  
+import { createStackNavigator } from 'react-navigation';
+import Login from './Login';
 
-
-export default class Login extends React.Component {
+export default class SignUp extends React.Component {
 	constructor(props){
 		super(props);
 		this.state={
@@ -31,15 +32,22 @@ export default class Login extends React.Component {
 		}
 	}
   render() {
+  	const { navigate } = this.props.navigation;
     return (
     <KeyboardAvoidingView behaviour='padding' style ={styles.wrapper}>
     <View style={styles.container}>
-    <Text style={styles.header}> LOGIN </Text>
+    <Text style={styles.header}> SIGNUP </Text>
     <TextInput
     	style={styles.textInput} 
     	placeholder='Username'
     	onChangeText={(username) => this.setState({username})}
-    		
+    	
+    /> 
+     <TextInput
+    	style={styles.textInput} 
+    	placeholder='Email'
+    	onChangeText={(email) => this.setState({email})}
+    	
 
 
     /> 
@@ -47,22 +55,44 @@ export default class Login extends React.Component {
     	style={styles.textInput} 
     	placeholder='Password'
     	onChangeText={(password) => this.setState({password})}
-    	
+    	secureTextEntry={true}	
 
 
     /> 
+     <TextInput
+    	style={styles.textInput} 
+    	placeholder='DateOfBirth'
+    	onChangeText={(DateOfBirth) => this.setState({DateOfBirth})}
+    		
+
+    /> 
+    
     <TouchableOpacity
     	style={styles.btn}
-    	onPress={this.login}
+    	onPress={() =>
+          navigate('Login')
+        }
     	>
-    	<Text>Log in</Text>
+    	<Text>SignUp</Text>
     	</TouchableOpacity>
     </View>
     </KeyboardAvoidingView>
     );
   }
   login=()=>{
-  	alert('test')
+  	fetch('https://192.168.1.86.3000/api/signup', {
+	  method: 'POST',
+	  headers: {
+	    Accept: 'application/json',
+	    'Content-Type': 'application/json',
+	  },
+	  body: JSON.stringify({
+	    username: this.state.username,
+	    email: this.state.email,
+	    password: this.state.password,
+	    DateOfBirth: this.state.DateOfBirth,
+  }),
+});
   }
 }
 

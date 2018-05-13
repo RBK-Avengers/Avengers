@@ -7,7 +7,7 @@ require('./config/dbconfig');
 //require  middlewares
 const bodyParser=require('body-parser');
 const morgan=require('morgan');
-
+var cookieParser = require('cookie-parser');
 let app = module.exports =express();
 
 
