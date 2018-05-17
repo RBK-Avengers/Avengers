@@ -11,21 +11,23 @@ exports.signupUser = function(req, res) {
    password :req.body.user.password,   
    bdate :req.body.user.bdate,   
    role :req.body.user.role,   
+   rank :req.body.user.rank,
    familyId :parseInt(req.body.user.familyId),
  });
+  console.log(req.body.user.email)
   models.User.findOne({ email: req.body.user.email },function(err,found){
 
    if (!found ){
-     
+
     bcrypt.hash(newUser.password, 10, function(err, hash) {
       newUser.password=hash;
-      // console.log(' newUser.password', hash)
+      console.log(' newUser.password', hash)
 
       newUser.save(function(err,obj) {
-       
+
        if(err){
         res.status(500).send({msg:"error"});
-        
+
       }
       else{
         res.status(201).send({msg:"success signup"});
@@ -33,18 +35,18 @@ exports.signupUser = function(req, res) {
       }
       
     });
-      
+
     })
   }
 
   else{
     res.status(201).send({msg:'choose another email'})
   }
-  
+
 })
 
 
-// console.log(newUser);
+  console.log(newUser);
 }
 
 exports.signinUser = function(req, res) {
@@ -55,24 +57,19 @@ exports.signinUser = function(req, res) {
   }
 
   else if(data !== null){
+    bcrypt.compare(req.body.user.password, data.password, function(err, resCrypt) {
+      if(!resCrypt){res.send({msg:"the password is not correct"})}
+        else if(resCrypt){
+          req.session._id=data._id;
+          req.session.username=data.username;
+          req.session.password=data.password;
+          res.send({msg:"success"})
 
-  // console.log('data',data)
-  if(err){
-    res.status(404).send({msg:"no account"})}
-    if(data !== null){
-      bcrypt.compare(req.body.user.password, data.password, function(err, resCrypt) {
-        if(!resCrypt){res.send({msg:"the password is not correct"})}
-          else if(resCrypt){
-            req.session._id=data._id;
-            req.session.username=data.username;
-            req.session.password=data.password;
-            res.send({msg:"success"})
+        }
+      });
 
-          }
-        });
-
-    }
-  });
+  }
+});
 };
 
 exports.getKidsNames= function(req,res){
@@ -92,9 +89,6 @@ exports.getKidsId= function(req,res){
     console.log('DB: ',data)
   //res.send(data[0])
 });
+};
 
-
-//res.send(req)
-  //console.log(req.body)
-}
 
