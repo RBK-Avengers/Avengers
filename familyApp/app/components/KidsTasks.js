@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Picker, StyleSheet, TextInput, TouchableOpacity, Text } from 'react-native';
+import axios from 'axios'
 
 export default class KidsTasks extends React.Component {
 
@@ -7,45 +8,72 @@ export default class KidsTasks extends React.Component {
 		super(props);
 
 		this.state={
-			kidName: '',
+			kidName: [],
 			taskText : ''
 		}
 	}
+//192.168.1.163
+getKidsEmail(){
 
-	render() {
-		return (
-			<View style={styles.container}>
-			
-			<Picker
-			selectedValue = {this.state.day}
-			onValueChange={day => this.setState({ day })}
-			style={{ width: 160 }}
-			mode="dropdown"
-			>
-			<Picker.Item label="Monday" value="Monday" />
-			<Picker.Item label="Tuesday" value="Tuesday" />
-			<Picker.Item label="Wednesday" value="Wednesday" />
+	axios.post('http://172.20.10.4:3000/getkids',{
+		user:'hh@gmail.com'
+	})
+	.then(function (response) {
+		console.log('task:',response.data);
+		alert("your id: " + response.data.familyId)
+	})
+	.catch(function (error) {
+		console.log(error);
+	});
+}
+
+getKids(){
+	axios.post('http://172.20.10.4:3000/getkidsId',{
+		id:12345
+	})
+	.then(function (response) {
+		console.log('task:',response.data);
+		alert("your id: " + response.data.id)
+	})
+	.catch(function (error) {
+		console.log(error);
+	});
+}
+
+render() {
+	return (
+		<View style={styles.container}>
+
+		<Picker
+		selectedValue = {this.state.day}
+		onValueChange={day => this.setState({ day })}
+		style={{ width: 160 }}
+		mode="dropdown"
+		>
+		<Picker.Item label="Monday" value="Monday" />
+		<Picker.Item label="Tuesday" value="Tuesday" />
+		<Picker.Item label="Wednesday" value="Wednesday" />
 
 
-			</Picker>
+		</Picker>
 
-			<TextInput 
-			underlineColorAndroid="transparent"
-			value={this.state.taskText}
-			style={styles.textInput} 
-			placeholder='Add Task'
-			onChangeText={(text) => this.setState({taskText: text})}
-			/> 
+		<TextInput 
+		underlineColorAndroid="transparent"
+		value={this.state.taskText}
+		style={styles.textInput} 
+		placeholder='Add Task'
+		onChangeText={(text) => this.setState({taskText: text})}
+		/> 
 
-			<TouchableOpacity
-			style={styles.btn}
-			onPress={() =>  console.log("Hussein")}>
-			<Text style={styles.textStyle}>Submit</Text>
-			</TouchableOpacity>
-			</View>
+		<TouchableOpacity
+		style={styles.btn}
+		onPress={this.getKids.bind(this)}>
+		<Text style={styles.textStyle}>Submit</Text>
+		</TouchableOpacity>
+		</View>
 
-			);
-	}
+		);
+}
 }
 
 const styles = StyleSheet.create({
