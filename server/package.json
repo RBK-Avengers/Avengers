@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --bail --timeout 15000 --reporter nyan test/ServerSpec.js"
+    "test": "mocha --bail --timeout 15000 --reporter nyan test/ServerSpec.js",
+       "server": "nodemon server/index.js",
+        "heroku-postbuild": "webpack -d "
   },
   "keywords": [],
   "author": "",
