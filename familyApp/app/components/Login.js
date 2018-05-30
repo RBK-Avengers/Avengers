@@ -145,4 +145,3 @@ btn: {
   alignItems:'center',
 }
 })
-
