@@ -20,8 +20,8 @@ export default class Login extends React.Component {
   constructor(props){
     super(props);
     this.state={
-      email:'nada@gmail.com',
-      password:'123',
+      email:'alex@yahoo.com',
+      password:'1234567',
     }
   }
   saveData(userInfo){
@@ -33,22 +33,17 @@ export default class Login extends React.Component {
   }
  sendLogin(){
      var that=this;
-
           const { navigate } = this.props.navigation;
-
-            axios.post(global.ip+'/login',{
-             user:this.state
-         })
+          axios.post(global.ip+'/login',{user:this.state})
          .then(async function (response) {
-
           alert(response.data.msg)
            that.saveData(response.data.user);
             var role= await AsyncStorage.getItem('role');
            if(response.data.msg==="success login"){
             if(role==='Mother'||role==='Father'){
-               this.props.navigation('Drawer')
+               navigate('Drawer')
             }else if(role==='Child'){
-               this.props.navigation('DrawerKids')
+               navigate('DrawerKids')
             }
               
            }
@@ -67,6 +62,8 @@ export default class Login extends React.Component {
          });
 };
    render() {
+        const { navigate } = this.props.navigation;
+
     //jozaa 
  return (
       <ImageBackground

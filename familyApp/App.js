@@ -14,6 +14,8 @@ import UserInfo from './app/components/UserInfo';
 //only for test (Jozaa)
 import Login2 from './app/components/Login2';
 import Finance from './app/components/Finance';
+import LoginForm from './app/components/LoginForm';
+
 
 const Application=  createStackNavigator({
   //i change it for testing (Jozaa)
@@ -48,6 +50,7 @@ export default class App extends React.Component {
      <Application/>
      // <Drawer/>
      // <Finance/>
+     // <LoginForm/>
      // <Login2/>
     );
   }

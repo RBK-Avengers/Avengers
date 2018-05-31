@@ -40,7 +40,7 @@ export default class Finance extends React.Component{
       editName:'',
       deletetName:'',
       id:'',
-      role:'Child',
+      role:'Mother',
       show:true,
     };
   }
