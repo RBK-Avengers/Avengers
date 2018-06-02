@@ -14,6 +14,7 @@ export default class TaskMonitor extends React.Component {
      <Icon0 style={{color:'green'}} name="tasklist" size={20}/>
    ),
  }
+
   constructor(props){
     super(props);
     this.state={
@@ -139,6 +140,7 @@ export default class TaskMonitor extends React.Component {
           </TouchableOpacity>
           </View>
         </View>
+
           <Card>
             {this.state.kidTasks.map((t,index)=>{
               return (
@@ -184,7 +186,6 @@ const styles = StyleSheet.create({
     marginTop:20,
     borderWidth: 1,
     borderColor: 'green',
-
   },
   picker: {
     width: 200,
@@ -192,7 +193,6 @@ const styles = StyleSheet.create({
     borderColor: 'black',
     borderWidth: 1,
     borderColor: 'green',
-   
   },
   card: {
     backgroundColor: '#fff',
@@ -248,6 +248,8 @@ const styles = StyleSheet.create({
     borderColor: 'green',
     marginLeft:30,
     marginRight:30,
+
   },
+
 })
 

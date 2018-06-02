@@ -12,9 +12,9 @@ import Shortage from './app/components/Shortage';
 import UserInfo from './app/components/UserInfo';
 import Finance from './app/components/Finance';
 
+
 // App navigation screens
 const Application = createStackNavigator({
-  
   Login: { screen: Login },
   SignUp: { screen: SignUp },
  'User Information': { screen: UserInfo },
@@ -37,6 +37,7 @@ export default class App extends React.Component {
     // global.ip = 'http://192.168.8.105:3000/api'; //jozaa
     // global.ip = 'http://192.168.1.111:3000/api' //Waed
     //global.ip = 'http://192.168.202.2:3000/api'; //Hussein
+
   }
   render(){
     return(

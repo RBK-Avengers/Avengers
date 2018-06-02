@@ -85,6 +85,7 @@ validateEmail(text){
               <TextInput
                 ref={input =>{this.textInput =input}}
                 value={this.state.username}
+
                 style={styles.textInput}  
                 placeholder='🙎🏻‍♂️  Username'
                 onChangeText={(text) => this.setState({username: text})}
