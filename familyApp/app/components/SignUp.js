@@ -18,39 +18,59 @@ export default class SignUp extends React.Component {
       role: 'Select your role 👶🏽 👨🏽 👩🏽',
       familyId:''
     }
+     
+    this.validateEmail=this.validateEmail.bind(this);
+    this.validatePassword=this.validatePassword.bind(this);
   }
-  validateEmail(text){
-    var reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/ ;
+ //validate user email
+validateEmail(text){
+    var reg = /^\s*(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))\s*$/;
     if(reg.test(text) === false){
       return false;
     }else{
       return true;
     }
   }
-  sendSignUp(){
-    if(this.state.email===''||this.state.password === ''||this.state.username ===''|| this.state.bdate === ''||this.state.role === 'Select your role'|| this.state.familyId ===''){
-      alert('fill all your data')
-    }else if(this.validateEmail(this.state.email)){ 
-      const { navigate } = this.props.navigation;
-     	axios.post(global.ip+'/signup', {user:this.state})
-        .then(function (response){
-          if(response.data.msg==="success signup"){
-            navigate('Login')
-          }else if(response.data.msg==='choose another email'){
-            alert('choose another email')
-          }
-        })
-        .catch(function (error) {
-          console.log(error);
-        })   
-      }else{
-        alert('Please Fill a Valid Email')
+  //validate user password
+  validatePassword(text){
+    var reg =/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{6,})/;
+    if(reg.test(text)===false){
+      return false;
+    }else{
+      return true;
+    }
+  }
+  sendSignUp() {
+    const { navigate } = this.props.navigation;
+    if (this.state.email === '' || this.state.password === '' || this.state.username === '' 
+      || this.state.bdate === '' || this.state.role === 'Select your role' 
+      || this.state.familyId === '') {
+      alert('fill all your data');
+  } else if (!this.validateEmail(this.state.email)) { 
+        alert('Please Fill a Valid Email');
+    }
+    else if (!this.validatePassword(this.state.password)){
+      alert('Your password should be 6 charecters long and include[a-z,A-Z,0-9]');
+    }
+    else{
+    axios.post(`${global.ip}/signup`, { user: this.state })
+    .then((response) => {
+      if (response.data.msg === 'success signup') {
+        navigate('Login');
+      } else if (response.data.msg === 'choose another email') {
+        alert('choose another email');
       }
-    }  
+    })
+    .catch((error) => {
+      console.log(error);
+    });   
+  } 
+  
+}  
   onSelect(value, label) {
     this.setState({role : value});
   }
-  render(){
+   render(){
     return(
       <ImageBackground
         source={{uri: 'http://tekino.co/wp-content/uploads/2017/11/light-orange-color-abstract-background-smooth-in-light-orange-color-photo-by-light-orange-colored-poop.jpg'}}
@@ -65,20 +85,21 @@ export default class SignUp extends React.Component {
               <TextInput
                 ref={input =>{this.textInput =input}}
                 value={this.state.username}
-              	style={styles.textInput}  
-              	placeholder='🙎🏻‍♂️  Username'
-              	onChangeText={(text) => this.setState({username: text})}
+
+                style={styles.textInput}  
+                placeholder='🙎🏻‍♂️  Username'
+                onChangeText={(text) => this.setState({username: text})}
               /> 
               <TextInput
                 value={this.state.email}
-              	style={styles.textInput} 
-              	placeholder=' ✉️  Email'
-              	onChangeText={(text) => this.setState({email: text})}
+                style={styles.textInput} 
+                placeholder=' ✉️  Email'
+                onChangeText={(text) => this.setState({email: text})}
               /> 
                <TextInput
-              	style={styles.textInput} 
-              	placeholder=' 🔐  Password'
-              	secureTextEntry={true}	
+                style={styles.textInput} 
+                placeholder=' 🔐  Password'
+                secureTextEntry={true}  
                 value={this.state.password}
                 onChangeText={(text) => this.setState({password: text})}
               /> 
@@ -104,14 +125,14 @@ export default class SignUp extends React.Component {
               </Select>
             </View>
             <TextInput
-           	  style={styles.textInput} 
-           	  placeholder=' 👨‍👩‍👧‍👦  FamilyId'	
+              style={styles.textInput} 
+              placeholder=' 👨‍👩‍👧‍👦  FamilyId'  
               value={this.state.familyId}
               onChangeText={(text) => this.setState({familyId: text})}
             />  
-            <TouchableOpacity	style={styles.btn} onPress={this.sendSignUp.bind(this)}>
-    	        <Text>SignUp</Text>
-    	      </TouchableOpacity>
+            <TouchableOpacity style={styles.btn} onPress={this.sendSignUp.bind(this)}>
+              <Text>SignUp</Text>
+            </TouchableOpacity>
             <Text style={{color: 'black', paddingTop:20,fontSize: 15}} onPress={()=> this.props.navigation.navigate('Login')}>
               I Have Already Account 
             </Text>
