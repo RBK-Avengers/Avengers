@@ -6,8 +6,14 @@ import DatePicker from 'react-native-datepicker';
 import {Select, Option} from "react-native-chooser";
 import Bar from './Bar';
 import ShortageNote from './ShortageNote';
+import Icon0 from 'react-native-vector-icons/FontAwesome'; 
 
 export default class Shortage extends React.Component {
+  static navigationOptions = {
+   drawerIcon: () => (
+     <Icon0 style={{color:'green'}} name="cart-plus" size={20}/>
+   ),
+ }
 	constructor(props){
     super(props);
     this.state={
@@ -37,7 +43,7 @@ export default class Shortage extends React.Component {
               onChangeText={(needText) => this.setState({needText})} value={this.state.needText}
               style={styles.textInput} 
               placeholder='> need' 
-              placeholderTextColor='white' >
+              placeholderTextColor='black' >
                </TextInput>
         </View>
       </View>
@@ -112,14 +118,14 @@ const styles = StyleSheet.create({
     flex:1,
   },
   header:{
-    backgroundColor:'#65737e',
+    backgroundColor:'white',
     alignItems:'center',
     justifyContent:'center',
     borderBottomWidth:  10,
     borderBottomColor:'#ddd',
   },
   headerText:{
-    color:'white',
+    color:'black',
     fontSize:40,
     padding:10,
     justifyContent:'center',
@@ -144,7 +150,7 @@ const styles = StyleSheet.create({
     zIndex:10,
     elevation:8,
     marginBottom:-45,
-    backgroundColor:'#65737e', 
+    backgroundColor:'#266a12', 
   },
   addButtonText:{
     color:'#fff',
@@ -153,10 +159,10 @@ const styles = StyleSheet.create({
   },
   textInput:{
     alignSelf:'stretch',
-    color:'#fff',
+    color:'green',
     padding:40,
     paddingTop:40,
-    backgroundColor:'#c0c5ce',
+    backgroundColor:'white',
     borderTopWidth:2,
     borderTopColor:'#c0c5ce',
   }

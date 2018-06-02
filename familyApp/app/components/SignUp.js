@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput, KeyboardAvoidingView, TouchableOpacity, Button, AsyncStorage, Picker, ScrollView, ImageBackground} from 'react-native';
+import { StyleSheet, Image, Text, View, TextInput, KeyboardAvoidingView, TouchableOpacity, Button, AsyncStorage, Picker, ScrollView, ImageBackground} from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import {createStackNavigator } from 'react-navigation';
 import Login from './Login';
@@ -15,7 +15,7 @@ export default class SignUp extends React.Component {
       password: '',
       username:'',
       bdate: '',
-      role: 'Select your role',
+      role: 'Select your role 👶🏽 👨🏽 👩🏽',
       familyId:''
     }
   }
@@ -53,26 +53,31 @@ export default class SignUp extends React.Component {
   render(){
     return(
       <ImageBackground
-        source={{uri: 'https://images.pexels.com/photos/1018137/pexels-photo-1018137.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'}}
+        source={{uri: 'http://tekino.co/wp-content/uploads/2017/11/light-orange-color-abstract-background-smooth-in-light-orange-color-photo-by-light-orange-colored-poop.jpg'}}
         style={styles.container}>
           <KeyboardAwareScrollView behaviour='padding' style ={styles.wrapper}>
             <ScrollView contentContainerStyle={styles.contentContainer}>
+             <View>
+              <Image 
+                source={{uri:'https://asuartmuseum.asu.edu/sites/default/files/styles/panopoly_image_original/public/families-visit-icon.png?itok=KPQ80-2x'}}
+                style={{width: 150, height: 150,justifyContent: 'center', opacity:1}}/>
+             </View>
               <TextInput
                 ref={input =>{this.textInput =input}}
                 value={this.state.username}
               	style={styles.textInput}  
-              	placeholder='Username'
+              	placeholder='🙎🏻‍♂️  Username'
               	onChangeText={(text) => this.setState({username: text})}
               /> 
               <TextInput
                 value={this.state.email}
               	style={styles.textInput} 
-              	placeholder='Email'
+              	placeholder=' ✉️  Email'
               	onChangeText={(text) => this.setState({email: text})}
               /> 
                <TextInput
               	style={styles.textInput} 
-              	placeholder='Password'
+              	placeholder=' 🔐  Password'
               	secureTextEntry={true}	
                 value={this.state.password}
                 onChangeText={(text) => this.setState({password: text})}
@@ -81,7 +86,7 @@ export default class SignUp extends React.Component {
                 style={styles.datepicker}
                 date={this.state.bdate}
                 mode="date"
-                placeholder="select your birthdate"
+                placeholder="🎂 select your birthdate"
                 format="YYYY-MM-DD"
                 confirmBtnText="Confirm"
                 cancelBtnText="Cancel"
@@ -100,7 +105,7 @@ export default class SignUp extends React.Component {
             </View>
             <TextInput
            	  style={styles.textInput} 
-           	  placeholder='FamilyId'	
+           	  placeholder=' 👨‍👩‍👧‍👦  FamilyId'	
               value={this.state.familyId}
               onChangeText={(text) => this.setState({familyId: text})}
             />  
@@ -108,7 +113,7 @@ export default class SignUp extends React.Component {
     	        <Text>SignUp</Text>
     	      </TouchableOpacity>
             <Text style={{color: 'black', paddingTop:20,fontSize: 15}} onPress={()=> this.props.navigation.navigate('Login')}>
-              I have already account 
+              I Have Already Account 
             </Text>
           </ScrollView>
         </KeyboardAwareScrollView>
@@ -126,13 +131,12 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     paddingLeft: 0,
     paddingRight: 0,
-    marginTop:100,
+    marginTop:50,
   },
   wrapper: {
     // flex: 1,
   },
   container: {
-    // flex: 1,
     backgroundColor: '#2896d3',
     paddingLeft: 40,
     paddingRight: 40,
@@ -152,30 +156,37 @@ const styles = StyleSheet.create({
   textInput: {
     alignSelf: 'stretch',
     padding: 16,
-    // marginBottom: 10,
-    marginBottom: 20,
+    marginBottom: 10,
     backgroundColor: '#fff',
-    fontSize: 20,
+    fontSize: 15,
+    borderColor: 'green',
+    borderWidth: 1,
   },
   btn: {
     alignSelf:'stretch',
-    backgroundColor:'#ffcde6',
-    padding:20,
+    padding:10,
     alignItems:'center',
+    borderColor: 'green',
+    borderWidth: 1,
+    marginTop:20,
   },
   datepicker:{
     width:295,
     height:60,
     alignSelf: 'stretch',
     padding: 16,
-    marginBottom: 20,
+    marginBottom: 10,
     backgroundColor: '#fff',
+    borderColor: 'green',
+    borderWidth: 1,
   },
   rolepicker:{
     alignSelf: 'stretch',
-    padding: 16,
-    marginBottom: 20,
+    padding: 10,
+    marginBottom: 5,
     backgroundColor: '#fff',
+    borderColor: 'green',
+    borderWidth: 1,
   },
 })
 

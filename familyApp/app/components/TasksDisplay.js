@@ -65,7 +65,7 @@ export default class TasksDisplay extends React.Component {
 	}
 	render(){
 		return(
-			<ScrollView contentContainerStyle={{backgroundColor	:'#2896d3',flex:1}} >
+			<ScrollView contentContainerStyle={{flex:1}} >
 			  <Bar p={this.state.progress} navigation={this.props.navigation}/>
 				<Card title="My Tasks" titleStyle={{fontSize:26}}>
 			    {this.state.kidTasks.map((t,index)=>{
@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
 		flex: 1,
 		alignItems: 'center',
 		justifyContent: 'center',
-		backgroundColor: '#2896d3',
+		//backgroundColor: '#2896d3',
 	},
 	card: {
 	  backgroundColor: '#fff',
@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
 	  fontSize:18,
 	},
 	unstrikeText: {
-    color: "#29323c",
+   //color: "#29323c",
     fontSize:18,
 	},
 	title: {

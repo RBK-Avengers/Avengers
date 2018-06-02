@@ -1,16 +1,17 @@
 import React from 'react';
-import { StyleSheet, Text,  View , TextInput, KeyboardAvoidingView, TouchableOpacity, AsyncStorage, ScrollView, ImageBackground,} from 'react-native';
+import { StyleSheet, Text,  View , TextInput, Image, KeyboardAvoidingView, TouchableOpacity, AsyncStorage, ScrollView, ImageBackground,} from 'react-native';
 import axios from 'axios';  
 import { createStackNavigator } from 'react-navigation';
 import SignUp from './SignUp';
 import DrawerKids from './DrawerKids';
 import Drawer from './Drawer';
+
 export default class Login extends React.Component {
   constructor(props){
     super(props);
     this.state={
-      email:'Ammar@gmail.com',
-      password:'123',
+      email:'',
+      password:'',
     }
   }
   saveData(userInfo){
@@ -48,28 +49,34 @@ export default class Login extends React.Component {
     const { navigate } = this.props.navigation;
     return( 
       <ImageBackground
-        source={{uri: 'https://images.pexels.com/photos/1018137/pexels-photo-1018137.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'}}
+
+        source={{uri: 'http://tekino.co/wp-content/uploads/2017/11/light-orange-color-abstract-background-smooth-in-light-orange-color-photo-by-light-orange-colored-poop.jpg'}}
         style={styles.container}>
+        <View>
+          <Image 
+          source={require('../images/15.png')}
+          style={{width: 300, height: 250,justifyContent: 'center',marginTop:120, opacity:1}}/>
+          </View>
         <KeyboardAvoidingView behaviour='padding' style ={styles.wrapper}>
           <ScrollView contentContainerStyle={styles.contentContainer}>
             <TextInput
           	  style={styles.textInput} 
               value={this.state.email}
-          	  placeholder='Email'
+          	  placeholder='✉️   Email'
           	  onChangeText={(email) => this.setState({email})}
             /> 
             <TextInput
               style={styles.textInput} 
               value={this.state.password}
               secureTextEntry={true}
-              placeholder='Password'
+              placeholder='🔐   Password'
               onChangeText={(password) => this.setState({password})}
             /> 
             <TouchableOpacity
               style={styles.btn}
               onPress={()=> this.sendLogin()}
           	>
-          	  <Text>LOGIN</Text>
+          	  <Text>Login</Text>
             </TouchableOpacity>
           	<Text style={{color: 'black', paddingTop:20,fontSize: 15}} onPress={() =>  navigate('SignUp')}>
               Create Account 
@@ -85,7 +92,7 @@ const styles = StyleSheet.create({
     paddingVertical: 20,
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
+    marginTop:20,
   },
   wrapper: {
     flex: 1,
@@ -104,22 +111,28 @@ const styles = StyleSheet.create({
   },
   header: {
     fontSize: 24,
-    marginBottom: 60,
+    marginBottom: 15,
     color: '#fff',
     fontWeight: 'bold',
   },
   textInput: {
     alignSelf: 'stretch',
     padding: 16,
-    marginBottom: 20,
+    marginBottom: 10,
     backgroundColor: '#fff',
-    fontSize: 20,
+    fontSize: 15,
+    borderColor: 'green',
+    borderWidth: 1,
   },
   btn: {
     alignSelf:'stretch',
-    backgroundColor:'#ffcde6',
-    padding:20,
+    backgroundColor:'white',
+    padding:10,
     alignItems:'center',
+    marginTop:30,
+    borderColor: 'green',
+    borderWidth: 1,
+    
   }
 })
 

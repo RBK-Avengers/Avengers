@@ -5,8 +5,15 @@ import { Card,CheckBox,Dimensions } from "react-native-elements";
 import CheckboxGroup from 'react-native-checkbox-group';
 import {Select, Option} from "react-native-chooser";
 import Bar from './Bar';
+import Icon0 from 'react-native-vector-icons/Octicons'; 
+
 
 export default class TaskMonitor extends React.Component {
+  static navigationOptions = {
+   drawerIcon: () => (
+     <Icon0 style={{color:'green'}} name="tasklist" size={20}/>
+   ),
+ }
 	constructor(props){
 		super(props);
 		this.state={
@@ -100,7 +107,8 @@ export default class TaskMonitor extends React.Component {
   }
 	render(){
 		return (
-	   <View style={{flex:1}}>
+    
+	   <View style={{flex:1,justifyContent:'center',}}>
 	     <Bar navigation={this.props.navigation}/>
 	     <ScrollView contentContainerStyle={styles.container}>
 	     	<Text style={styles.title}> Monitor Kids' Tasks</Text>
@@ -113,20 +121,23 @@ export default class TaskMonitor extends React.Component {
   	     	    return (<Option value={kid.username}  key={index}>{kid.username}</Option>) 
   	     		})}
           </Select>
-	     		<TouchableOpacity style={styles.btn} onPress={() =>this.showTasks()}>
-	     		  <Text style={styles.textStyle}>Show Tasks</Text>
-	     		</TouchableOpacity>
+	     		
 	     	</View>
 	     	<View style={styles.subcontainer}>
 	     		<TextInput 
 	     		  value={this.state.taskText}
 	     		  style={styles.textInput} 
-	     		  placeholder='Add One Task'
+	     		  placeholder=' 📝 Add One Task'
 	     		  onChangeText={(text) => this.setState({taskText: text})}
 	     		/> 
+          <View style={{flexDirection:'row',alignSelf: 'center'}}>
+          <TouchableOpacity style={styles.btn} onPress={() =>this.showTasks()}>
+            <Text style={styles.textStyle}> 👆🏽Show Tasks</Text>
+          </TouchableOpacity>
 	     		<TouchableOpacity style={styles.btn} onPress={() =>this.setKidTask()}>
-	     		  <Text style={styles.textStyle}>Add Task</Text>
+	     		  <Text style={styles.textStyle}>👌🏽Add Task</Text>
 	     		</TouchableOpacity>
+          </View>
 	     	</View>
           <Card>
           	{this.state.kidTasks.map((t,index)=>{
@@ -148,49 +159,52 @@ export default class TaskMonitor extends React.Component {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor: '#2896d3',
+
 	},
 	subcontainer:{
 		justifyContent:'center',
-		flexDirection:'row',
-		marginTop:10
+    alignSelf: 'center',
+		marginTop:10,
+
 	},
 	select:{
-		backgroundColor:"#D3D3D3",
-		height:30,
+		height:40,
 		justifyContent: 'center',
+    borderWidth: 1,
+    borderColor: 'green',
 	},
 	btn:{
-		backgroundColor: '#D3D3D3',
 		justifyContent: 'center',
 		marginLeft:5,
 		borderRadius:5,
-		width:70,
-		alignSelf: 'center',
-		borderWidth: 1,
-    borderColor: '#336633',
-	},
-	textInput: {
-		alignSelf: 'stretch',
-		padding: 16,
-		marginBottom: 20,
-		backgroundColor: '#fff',
+		width:130,
+    height:30,
+		borderWidth: 0.5,
+    borderColor: 'black',
+    marginTop:20,
+    borderWidth: 1,
+    borderColor: 'green',
+
 	},
 	picker: {
     width: 200,
     height: 44,
     borderColor: 'black',
     borderWidth: 1,
+    borderColor: 'green',
+   
   },
   card: {
     backgroundColor: '#fff',
     flex: 1,
     width: 400,
     height:300,
-    borderTopLeftRadius: 10,
-    borderTopRightRadius: 10,
-    borderBottomLeftRadius: 10,
-    borderBottomRightRadius: 10,
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+    borderBottomLeftRadius: 20,
+    borderBottomRightRadius: 20,
+    borderWidth: 1,
+    borderColor: 'green',
 
     ...Platform.select({
       ios: {
@@ -230,6 +244,10 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     marginLeft:0,
     justifyContent: 'center',
+    borderWidth: 1,
+    borderColor: 'green',
+    marginLeft:30,
+    marginRight:30,
 	},
 })
 

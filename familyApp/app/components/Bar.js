@@ -50,13 +50,13 @@ export default class Bar extends React.Component{
       <View style={styles.allPage}>
         <View style={styles.barView}>
           <Header
-            backgroundColor='#123456'
+            backgroundColor='#1d9600'
             innerContainerStyles={styles.innerContainer}
             outerContainerStyles={styles.outerContainer}
 
             leftComponent={
               <View  style={styles.leftComponent}>
-                <Icon0 onPress={()=>this.props.navigation.openDrawer()} style={{color:'#0bf5fb'}} name="bars" size={35}/>
+                <Icon0 onPress={()=>this.props.navigation.openDrawer()} style={{color:'white'}} name="bars" size={35}/>
                 <Text onPress={()=>this.props.navigation.openDrawer()} style={styles.textUnderIcon}>Menu</Text>
               </View>
             }
@@ -64,7 +64,7 @@ export default class Bar extends React.Component{
             centerComponent={
               <View style={styles.centerComponentView}>
                 <View  style={styles.centerComponent}>
-                  <Icon0 onPress={() =>this.state.role==='Father'||this.state.role==='Mother'?this.props.navigation.navigate('User Information'):null} name={userRole[this.state.role]} size={35} color="red"/>
+                  <Icon0 onPress={() =>this.state.role==='Father'||this.state.role==='Mother'?this.props.navigation.navigate('User Information'):null} name={userRole[this.state.role]} size={35} color="white"/>
                   <Text onPress={() =>this.state.role==='Father'||this.state.role==='Mother'?this.props.navigation.navigate('User Information'):null} style={styles.textUnderIcon}>
                     {this.state.role}
                   </Text>
@@ -85,7 +85,7 @@ export default class Bar extends React.Component{
                 </View>
                 */}
                 <View style={styles.lastCenterComponent}>
-                  <Icon6 onPress={() => this.state.role==='Father'||this.state.role==='Mother'?this.props.navigation.navigate('Task Monitor'):this.props.navigation.navigate('TasksDisplay')}  style={{color:'#0bf5fb'}} 
+                  <Icon6 onPress={() => this.state.role==='Father'||this.state.role==='Mother'?this.props.navigation.navigate('Task Monitor'):this.props.navigation.navigate('TasksDisplay')}  style={{color:'white'}} 
                   name="checklist" size={35}/>
                 <Text onPress={() =>this.state.role==='Father'||this.state.role==='Mother'?this.props.navigation.navigate('Task Monitor'):this.props.navigation.navigate('TasksDisplay')} style={styles.textUnderIcon}>Tasks</Text>
                 </View>
@@ -94,7 +94,7 @@ export default class Bar extends React.Component{
 
             rightComponent={
               <View style={styles.rightComponent}>
-                <Icon8 onPress={() => this.props.navigation.navigate('Login')} style={{color:'#0bf5fb'}} 
+                <Icon8 onPress={() => this.props.navigation.navigate('Login')} style={{color:'white'}} 
                   name="logout" size={35}/>
                 <Text onPress={() =>this.props.navigation.navigate('Login')} style={styles.textUnderIcon}>logout</Text>
               </View>

@@ -1,7 +1,6 @@
 import React from 'react';
 import { View, StyleSheet,Text,Image } from 'react-native';
 import { createDrawerNavigator } from 'react-navigation'
-import Tasks from './Tasks';
 import UserInfo from './UserInfo';
 import Shortage from './Shortage';
 import TasksDisplay from './TasksDisplay';
